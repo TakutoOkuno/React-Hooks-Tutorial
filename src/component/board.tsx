@@ -4,7 +4,7 @@ import Square from "./square";
 
 const Board: React.FunctionComponent = () => {
     const renderSquare = (i: number) => {
-        return <Square />;
+        return <Square value={i}/>;
     };
 
     const status = 'Next player: X';

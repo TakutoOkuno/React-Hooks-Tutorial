@@ -1,9 +1,17 @@
 import * as React from "react";
 import '../index.css';
 
-const Square: React.FunctionComponent = () =>
+interface Props {
+    value: number;
+}
+
+const Square: React.FunctionComponent<Props> = (
+    {
+        value,
+    }: Props
+) =>
     <button className="square">
-        {/* TODO */}
+        {value}
     </button>;
 
 export default Square;
