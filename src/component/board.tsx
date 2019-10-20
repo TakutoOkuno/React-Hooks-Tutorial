@@ -1,10 +1,20 @@
+import {useState} from 'react';
 import * as React from 'react';
 import '../index.css';
 import Square from "./square";
 
 const Board: React.FunctionComponent = () => {
+    const [squares, setSquares] = useState(Array(9).fill(null));
+    const handleClick = (i: number) => {
+        const newSquares = squares.slice();
+        newSquares[i] = 'X';
+        setSquares(newSquares);
+    };
+
     const renderSquare = (i: number) => {
-        return <Square value={i}/>;
+        return <Square
+            value={squares[i]}
+            onClick={() => handleClick(i)}/>;
     };
 
     const status = 'Next player: X';

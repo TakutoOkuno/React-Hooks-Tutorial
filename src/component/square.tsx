@@ -1,19 +1,19 @@
 import * as React from "react";
-import {useState} from "react";
 import '../index.css';
 
 interface Props {
     value: number | 'X';
+    onClick: () => void;
 }
 
 const Square: React.FunctionComponent<Props> = (
     {
-        value: initialValue
+        value,
+        onClick
     }: Props
 ) => {
-    const [value, setValue] = useState(initialValue);
-    const handleClick = () => setValue('X');
-    return <button className="square" onClick={handleClick}>
+
+    return <button className="square" onClick={onClick}>
         {value}
     </button>
 };

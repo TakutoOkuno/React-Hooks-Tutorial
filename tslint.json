@@ -12,6 +12,8 @@
     ]
   },
   "rules": {
-    "interface-name": [false]
+    "interface-name": [false],
+    "jsx-no-lambda": false,
+    "no-console": false
   }
 }
