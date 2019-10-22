@@ -7,21 +7,22 @@ const Game: React.FunctionComponent = () => {
     const [history, setHistory] = useState([{
         squares: Array(9).fill(''),
     }]);
+    const [stepNum, setStepNum] = useState(0);
     const [xIsNext, setXIsNext] = useState(true);
 
-    const current = history[history.length -1];
+    const current = history[stepNum];
     const moves = history.map((step, move) => {
-       const desc = move ?
-           `Go to #${move}` :
-           'Go to game start';
+        const desc = move ?
+            `Go to #${move}` :
+            'Go to game start';
 
-       return <li key={move}>
-           <button onClick={() => jumpTo(move)}>{desc}</button>
-       </li>
+        return <li key={move}>
+            <button onClick={() => jumpTo(move)}>{desc}</button>
+        </li>
     });
 
     const handleClick = (i: number) => {
-        const newHistory = history;
+        const newHistory = history.slice(0, stepNum + 1);
         const newSquares = current.squares.slice();
         if (winner || current.squares[i]) {
             return;
@@ -31,6 +32,7 @@ const Game: React.FunctionComponent = () => {
         setHistory(newHistory.concat([{
             squares: newSquares,
         }]));
+        setStepNum(newHistory.length);
         setXIsNext(!xIsNext);
     };
 
@@ -54,8 +56,9 @@ const Game: React.FunctionComponent = () => {
         return '';
     };
 
-    const jumpTo = (move: any) => {
-        console.log(move);
+    const jumpTo = (step: number) => {
+        setStepNum(step);
+        setXIsNext(step % 2 === 0);
     };
 
     const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
