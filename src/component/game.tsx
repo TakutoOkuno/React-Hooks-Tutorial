@@ -10,6 +10,15 @@ const Game: React.FunctionComponent = () => {
     const [xIsNext, setXIsNext] = useState(true);
 
     const current = history[history.length -1];
+    const moves = history.map((step, move) => {
+       const desc = move ?
+           `Go to #${move}` :
+           'Go to game start';
+
+       return <li key={move}>
+           <button onClick={() => jumpTo(move)}>{desc}</button>
+       </li>
+    });
 
     const handleClick = (i: number) => {
         const newHistory = history;
@@ -44,6 +53,11 @@ const Game: React.FunctionComponent = () => {
         }
         return '';
     };
+
+    const jumpTo = (move: any) => {
+        console.log(move);
+    };
+
     const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
     const winner = calculateWinner(current.squares);
     const winnerStatus = `Winner: ${winner}`;
@@ -59,7 +73,7 @@ const Game: React.FunctionComponent = () => {
         </div>
         <div className="game-info">
             <div>{winner ? winnerStatus : status}</div>
-            <ol>{/* TODO */}</ol>
+            <ol>{moves}</ol>
         </div>
     </div>
 };
