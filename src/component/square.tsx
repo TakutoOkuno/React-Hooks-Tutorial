@@ -6,15 +6,10 @@ interface Props {
     onClick: () => void;
 }
 
-const Square: React.FunctionComponent<Props> = (
-    {
-        value,
-        onClick
-    }: Props
-) => {
+const Square: React.FunctionComponent<Props> = (p: Props) => {
 
-    return <button className="square" onClick={onClick}>
-        {value}
+    return <button className="square" onClick={p.onClick}>
+        {p.value}
     </button>
 };
 
