@@ -2,7 +2,7 @@ import * as React from "react";
 import '../index.css';
 
 interface Props {
-    value: number | 'X';
+    value: string;
     onClick: () => void;
 }
 
